@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Todo App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+  <body>
+    <div class="container">
+      
+      <div class="card" id="app-wrapper">
+        <div class="row">
+          <h1 class="app-title">TODO App</h1>
+        </div>
+        <div class="row">
+          <form id="create-todo-form" class="col w-100 self-center">
+            <div class="row">
+              <div class="col w-100">
+                <label>Title</label>
+                <input id="title-input"autocomplete="off" class="w-100" placeholder="Title" required type="text" name="title" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col w-100">
+                <label>Description</label>
+                <textarea
+                  id="desc-input"
+                  autocomplete="off"
+									class="w-100"
+                  placeholder="Description"
+                  rows="4"
+                  name="description"
+                ></textarea>
+              </div>
+            </div>
+            <div class="row justify-between">
+              <div class="w-50">
+                <div class="col w-100">
+                  <label>Category</label>
+                  <select id="category-input" name="category" required>
+                    <option value="" selected disabled>Select An Option</option>
+                    <option value="personal">Personal</option>
+                    <option value="work">Work</option>
+                    <option value="school">School</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="w-50">
+									<div class="col w-100">
+										<label>Due Date</label>
+										<input id="due-date-input" autocomplete="off" type="text" name="dueDate">
+									</div>
+							</div>
+            </div>
+          </form>
+        </div>
+        <div class="row">
+          <%=errors ? errors : null%>
+        </div>
+				<div id="todo-actions" class="row justify-center">
+					<button id="add-task">Add Task</button>
+					<button id="delete-tasks">Delete Tasks</button>
+        </div>
+        <div id="filter-actions" class="row justify-center">
+            <a class="link filter" href="/?sort=oldest-first">Oldest First</a>
+            <a class="link filter" href="/?sort=latest-first">Latest First</a>
+            <a class="link filter" href="/?sort=ascending&prop=title">Title A-Z</a>
+            <a class="link filter" href="/?sort=descending&prop=title">Title Z-A</a>
+            <a class="link filter" href="/?sort=group-by-categories">Group by Category</a>
+          </div>
+				<div class="row">
+          <div class="col w-100">
+              <% for(let todo of todos){ %>
+                <div id="todo-details-<%=todo._id%>-wrapper" class="row justify-between items-center todo-item-wrapper" data-todo-id="<%=todo._id%>">
+                  <div class="row">
+                    <div class="todo-checkbox-wrapper">
+                      <input class="todo-item-checkbox" id="<%=todo._id%>" type="checkbox">
+                    </div>
+                    <div id="todo-details-<%=todo._id%>" class="col todo-details-wrapper">
+                      <div class="todo-title"><%= todo.title %></div>
+                      <div class="todo-desc"><%= todo.description %></div>
+                      <div class="todo-due-date"><%= todo.dueDate %></div>
+                    </div>
+                  </div>
+                  <div class="col todo-category-wrapper bg-<%=todo.category.toString().trim().replace(' ', '-').toLowerCase()%>">
+                      <div><%= todo.category %></div>
+                  </div>
+                </div>
+              <%}%>
+    
+          </div>
+				</div>
+      </div>
+    </div>
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/js/home.js"></script>
+  </body>
+</html>
