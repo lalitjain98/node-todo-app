@@ -1,6 +1,7 @@
 $(function () {
 	let selectedItems = [];
 
+	//function to take care of checkbox toggle event and manipulate list of selectedItems (for deletion)
 	function checkboxAction(id){
 		console.log(id);
 		$(`#todo-details-${id} div`).toggleClass("skriked");
@@ -15,16 +16,21 @@ $(function () {
 
 	}
 
+	// intermediary function to handle checkbox toggle event
 	function handleCheckbox(e) {
 		const checkboxId = e.target.id;
 		// $(`#${checkboxId}`).prop('checked', !$(`#${checkboxId}`)[0].checked);
 		checkboxAction(checkboxId);
 	}
 
+	// handle click on the entire todo item row to check the checkbox and then delegate further action to checkboxAction() 
 	function handleTodoRowClick(e){
 		console.log(e)
+		//if click event is actually on checkbox input element then return
 		if (e.target.type == 'checkbox') return;		
 		console.log(e.currentTarget.className)
+
+		// make sure the currentTarget of the event is the item row element
 		if(e.currentTarget.classList.contains("todo-item-wrapper")){
 			const checkboxId = e.currentTarget.attributes['data-todo-id'].value;
 			$(`#${checkboxId}`).prop('checked', !$(`#${checkboxId}`)[0].checked)
@@ -34,10 +40,13 @@ $(function () {
 
 	console.log("Document Ready");
 
+	//for date input
 	$('#due-date-input').datepicker({ dateFormat: 'dd MM, yy' });
 
+	// stop form submission on enter key press
 	$('#create-todo-form').submit((e) => { e.preventDefault() })
 
+	//add task button click event handling
 	$('#add-task').click((e) => {
 		let formData = $('#create-todo-form').serializeArray();
 		console.log("Add Task", formData);
@@ -92,12 +101,18 @@ $(function () {
 			})
 	})
 
+	//add handle checkbox on each todo item checkbox
 	$('.todo-item-checkbox').each(function () {
 		$(this).change(handleCheckbox);
 	})
+
+	//add handle checkbox on each todo item row element
 	$('.todo-item-wrapper').each(function () {
 		$(this).click(handleTodoRowClick);
 	})
+
+	//delete selected tasks function
+	
 	$('#delete-tasks').click(function () {
 		let data = JSON.stringify(selectedItems)
 		$.ajax('/todos', {

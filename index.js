@@ -18,6 +18,8 @@ app.use((req, res, next)=>{
     app.locals.createTodoFormData = app.locals.createTodoFormData || null;
     next();
 })
+
+// for group by category lower order means ordering higher up in the list
 const categoryOrder = {
     personal: '0',
     school: '1',
@@ -79,6 +81,7 @@ app.get('/', (req, res)=>{
     })
 });
 
+//API to create todo item
 app.post('/todos', (req, res)=>{
     // console.log(req.body);
     let todo = JSON.parse(req.body.todo);
@@ -96,6 +99,7 @@ app.post('/todos', (req, res)=>{
     // res.redirect('back');
 })
 
+//API to delete todos
 app.delete('/todos', (req, res)=>{
     console.log(req.body);
     let ids = JSON.parse(req.body.ids)
