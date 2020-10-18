@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Todo App</title>
+    <title>Task Manager</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="/css/home.css" />
@@ -14,14 +14,14 @@
       
       <div class="card" id="app-wrapper">
         <div class="row">
-          <h1 class="app-title">TODO App</h1>
+          <h1 class="app-title">Task Manager</h1>
         </div>
         <div class="row">
           <form id="create-todo-form" class="col w-100 self-center">
             <div class="row">
               <div class="col w-100">
                 <label>Title</label>
-                <input id="title-input"autocomplete="off" class="w-100" placeholder="Title" required type="text" name="title" />
+                <input id="title-input"autocomplete="off" class="w-100" required type="text" name="title" />
               </div>
             </div>
             <div class="row">
@@ -31,7 +31,6 @@
                   id="desc-input"
                   autocomplete="off"
 									class="w-100"
-                  placeholder="Description"
                   rows="4"
                   name="description"
                 ></textarea>

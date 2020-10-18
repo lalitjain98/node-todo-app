@@ -71,16 +71,18 @@ input, textarea, select, option {
     font-size: 1.1rem;
 }
 
-input, textarea{
+input, textarea, select {
     border-bottom: 1px solid rgba(0,0,0,0.15);
     border-top: 1px solid rgba(0,0,0,0.15);
+    background-color: #eee;
 }
 
 input:focus, textarea:focus, select:focus, option:focus {
-    background: #eee;
+    background: #ddd;
     outline: none;
 } 
 label {
+    font-size: 1rem;
     color: #555555;
     margin: 5px;
 }

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/todo_app_dev', {useNewUrlParser: true})
+const dbUrl = require('./').dbUrl;
+// mongodb://localhost/todo_app_dev
+mongoose.connect(dbUrl, {useNewUrlParser: true})
 const db = mongoose.connection
 
 db.on('error', console.error.bind(console, "Connection to DB Failed!"));

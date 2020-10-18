@@ -1,10 +1,11 @@
 const express = require('express');
 const path = require('path');
-const port = 5000;
 const db = require('./config/mongoose');
 const app = express();
 const Todo = require('./models/Todo');
 const moment = require('moment');
+const config = require('./config');
+const port = config.port;
 
 app.use(express.static(path.join(__dirname, 'assets')))
 app.use(express.urlencoded({extended: false}))
