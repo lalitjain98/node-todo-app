@@ -6,11 +6,10 @@
   "scripts": {
     "dev": "nodemon ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server:prod": "NODE_ENV=production PORT=5000 nodemon ./index.js",
-    "start": "npm run server:prod"
+    "start": "NODE_ENV=production nodemon ./index.js"
   },
   "keywords": [
-    "todo"
+    "tasks"
   ],
   "author": "lalit jain",
   "license": "ISC",
